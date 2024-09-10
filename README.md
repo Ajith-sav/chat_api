@@ -1,4 +1,4 @@
-﻿# chat_api
+﻿# Chat_API
 
 A simple real-time chat application built with Node.js, Express, and Socket.io.
 
@@ -21,8 +21,8 @@ A simple real-time chat application built with Node.js, Express, and Socket.io.
 
 1. **Clone the repository**:
 
-   `git clone https://github.com/your-username/node-chat-app.git`
-   `cd chat_api`
-   `npm install`
-   `touch .env`
+   `git clone https://github.com/Ajith-sav/chat_api.git`<br>
+   `cd chat_api`<br>
+   `npm install`<br>
+   `touch .env`<br>
    `npm start`
