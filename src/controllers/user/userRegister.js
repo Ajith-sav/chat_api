@@ -3,9 +3,9 @@ import { generateToken } from "../../utils/tokens.js";
 
 const registerUser = async (req, res) => {
   const { name, email, password, profilePic } = req.body;
+  // console.log(name, email, password, "----");
   if (!name || !email || !password) {
-    res.status(400);
-    throw new Error(" Please enter all the feilds");
+    res.status(400).json({ message: "Please enter all the feilds" });
   }
   try {
     const userExists = await User.findOne({ email: email });
@@ -22,15 +22,9 @@ const registerUser = async (req, res) => {
 
     if (user) {
       const token = generateToken(user._id);
-      res
-        .status(201)
-        .json({
-          _id: user._id,
-          name: user.name,
-          email: user.email,
-          pic: user.profilePic,
-          token: token,
-        });
+      res.status(201).json({
+        token: token,
+      });
     }
   } catch (error) {
     res.status(500).json({ message: `${error.message}` });

@@ -1,24 +1,22 @@
 import express from "express";
 import { config } from "dotenv";
-import chats from "./data/data.js";
 import connectDB from "./config/connectDB.js";
-import userRoutes from "./routes/userRoutes.js"   
-import color from 'colors'
+import userRoutes from "./routes/userRoutes.js";
+import chatRoutes from "./routes/chatRoutes.js";
+import cors from "cors";
+import color from "colors";
 
 connectDB();
 config();
+const options = {
+  origin: "http://localhost:3000",
+};
 const app = express();
-app.use(express.json())
+app.use(express.json());
+app.use(cors(options));
 
-app.get("/", (req, res) => {
-  res.send("hello world.");
-});
-
-app.get("/api/chat", (req, res) => {
-  res.send(chats);
-});
-
-app.use('/api/user', userRoutes)
+app.use("/api/user", userRoutes);
+app.use("/api/chat", chatRoutes);
 
 const PORT = process.env.PORT || 7000;
 app.listen(PORT, () => {
